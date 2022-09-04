@@ -1,1 +1,2 @@
-# 2022_fall_computer_science
+# Информатика 2022
+
