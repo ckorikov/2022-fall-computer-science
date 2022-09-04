@@ -2,7 +2,10 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="author" content="Constantine Korikov">
 
 		<title>Информатика</title>
 
@@ -12,17 +15,22 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<link rel="stylesheet" href="plugin/asciinema/asciinema-player.css">
 		<style>
-			.bigtext {
+		.bigtext {
 			font-size: 0.6em;
 			line-height: 1.2em;
-		  }
+		}
+		.cite {
+			text-align: right;
+		}
 		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
 				<section>
+					<img src="pics/logo.svg" alt="logo" style="height: 50px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
 					<h2>Информатика</h2>
 					<p>
 						<small><a href="https://www.linkedin.com/in/ckorikov/">Константин Кориков</a></small>
@@ -46,7 +54,7 @@
 						<img src="pics/01/linkedin.png">
 					</section>
 					<section>
-						<img src="pics/01/slack.png">
+						<img height="600" src="pics/01/telegram.png">
 					</section>
 					<section>
 						<img src="pics/01/github.png">
@@ -94,19 +102,62 @@
 						<ul>
 							<li>vcs</li>
 							<li>git</li>
-							<li>command line</li>
+							<li>command line interface (cli)</li>
 						</ul>
 					</section>
 					<section>
-						<p><b>Система контроля версий</b> — это система, записывающая изменения в файл или набор файлов в течение времени и позволяющая вернуться позже к определённой версии.</p>
+						<p><strong>Система контроля версий</strong> — это система, записывающая изменения в файл или набор файлов в течение времени и позволяющая вернуться позже к определённой версии.</p>
+						<p><small><a href="https://git-scm.com/book/ru/v2">Pro Git</a></small></p>
 					</section>
 					<section>
-						<p><b>git</b> — the stupid content tracker.</p>
+						<p><strong>git</strong> — the stupid content tracker.</p>
 						<p>Git is a fast, scalable, distributed revision control system with an unusually rich command set that provides both high-level operations and full access to internals.</p>
+						<p><small><a href="https://git-scm.com/docs/git">man</a></small></p>
 					</section>
-
 					<section>
-						<img src="pics/01/git.png">
+						<img src="pics/01/progit2.png" height="400" alt="Pro Git">
+						<p><small><a href="https://git-scm.com/book/ru/v2">Pro Git</a></small></p>
+					</section>
+					<section>
+						<h5>Создание локального git-репозитория</h5>
+						<script id="asciicast-iN2QuWCd5FeOu116DiZhqii4U" src="https://asciinema.org/a/iN2QuWCd5FeOu116DiZhqii4U.js" async data-rows="20"></script>
+						<p><small>Демонстрация</small></p>
+					</section>
+					<section>
+						<h5>Клонирование git-репозитория</h5>
+						<script id="asciicast-qu7dfEwBqUsB5TUU2YWeE8J4T" src="https://asciinema.org/a/qu7dfEwBqUsB5TUU2YWeE8J4T.js" async data-rows="20"></script>
+						<p><small>Демонстрация</small></p>
+					</section>
+					<section>
+						<h5>Ветвление в git</h5>
+						<script id="asciicast-BytPAC3kiNgaR9d87YWnYOKGe" src="https://asciinema.org/a/BytPAC3kiNgaR9d87YWnYOKGe.js" async data-rows="20"></script>
+						<p><small>Демонстрация</small></p>
+					</section>
+					<section>
+						<h5>Синхронизация git-репозитория</h5>
+						<script id="asciicast-vjIOHjBKWwBK6UttPnrkLlB69" src="https://asciinema.org/a/vjIOHjBKWwBK6UttPnrkLlB69.js" async data-rows="20"></script>
+						<p><small>Демонстрация</small></p>
+					</section>
+					<section>
+						<h5>Настройка пользователя</h5>
+						<pre><code data-trim data-noescape>
+							git config --global user.name "Constantine Korikov"
+							git config --global user.email "korikov.constantine@spbstu.ru"
+						</code></pre>
+					</section>
+					<section>
+						<img src="pics/01/commits.png" height="400" alt="Commits">
+						<p><small><a href="https://www.conventionalcommits.org/ru/v1.0.0/">Соглашение о коммитах 1.0.0</a></small></p>
+					</section>
+					<section>
+						<p>
+							<strong>CLI (command line interface)</strong> — 
+							управление программами с помощью команд. Команды состоят из букв, цифр, символов, набираются построчно, выполняются после нажатия клавиши Enter.
+						</p>
+						<p><small><a href="https://help.ubuntu.ru/wiki/командная_строка">Командная строка (документация Ubuntu)</a></small></p>
+					</section>
+					<section>
+						<img src="pics/01/shotts_linux_cmd.png" height="500">
 					</section>
 				</section>
 				
@@ -116,21 +167,21 @@
 				
 			</div>
 		</div>
-
 		<script src="dist/reveal.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
-		<script src="plugin/js/mermaid.full.js"></script>
+		<script src="plugin/search/search.js"></script>
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
-
+				slideNumber: true,
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch, RevealZoom ]
 			});
 		</script>
 	</body>
