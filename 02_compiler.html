@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="author" content="Constantine Korikov">
+
+	<title>Информатика</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<link rel="stylesheet" href="plugin/asciinema/asciinema-player.css">
+	<style>
+		.bigtext {
+			font-size: 0.6em;
+			line-height: 1.2em;
+		}
+
+		.cite {
+			text-align: right;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<img src="pics/logo.svg" alt="logo"
+					style="height: 50px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+				<h2>Информатика</h2>
+				<p>
+					<small><a href="https://www.linkedin.com/in/ckorikov/">Константин Кориков</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Тема 2</h2>
+				<p>Программирование на C++: процесс разработки</p>
+			</section>
+
+			<section>
+				<h2>Агенда</h2>
+				<ol>
+					<li>Простейшая программа на C++</li>
+					<li>Как работает компилятор</li>
+					<li>Программа из нескольких файлов</li>
+					<li>Редакторы кода</li>
+					<li>Отладка кода</li>
+				</ol>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Простейшая программа на C++</h2>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					```cpp
+					#include <iostream>
+				
+					int main()
+					{
+						std::cout << "Hello World" << std::endl;
+						return 0;
+					}
+					```
+					</textarea>
+					</section>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Как работает компилятор</h2>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Редакторы кода</h2>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Отладка кода</h2>
+				</section>
+			</section>
+
+			<section>
+				<h5><a href="mailto:constantine.korikov@gmail.com">constantine.korikov@gmail.com</a></h5>
+			</section>
+
+		</div>
+	</div>
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/search/search.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: true,
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch, RevealZoom]
+		});
+	</script>
+</body>
+
+</html>
