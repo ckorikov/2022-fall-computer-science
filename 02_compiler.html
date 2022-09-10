@@ -16,7 +16,6 @@
 
 	<!-- Theme used for syntax highlighted code -->
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	<link rel="stylesheet" href="plugin/asciinema/asciinema-player.css">
 	<style>
 		.bigtext {
 			font-size: 0.6em;
@@ -51,9 +50,8 @@
 				<ol>
 					<li>Простейшая программа на C++</li>
 					<li>Как работает компилятор</li>
-					<li>Программа из нескольких файлов</li>
-					<li>Редакторы кода</li>
-					<li>Отладка кода</li>
+					<li>Компиляторы и редакторы </li>
+					<li>CMake</li>
 				</ol>
 			</section>
 
@@ -73,24 +71,144 @@
 					}
 					```
 					</textarea>
-					</section>
+				</section>
 			</section>
 
 			<section>
 				<section>
 					<h2 class="r-fit-text">Как работает компилятор</h2>
 				</section>
-			</section>
-
-			<section>
 				<section>
-					<h2 class="r-fit-text">Редакторы кода</h2>
+					<img src="pics/02/compilation.png" alt="Процесс компиляции">
+					<p><small>Процесс компиляции</small></p>
+				</section>
+				<section>
+					<h2>Исходный код</h2>
+					<small>🌐 source code</small>
+					<p>Код программы в текстовых файлах с расширением .cpp, .h</p>
+				</section>
+				<section>
+					<h2>Препроцессор</h2>
+					<small>🌐 preprocessor</small>
+					<p>Инструмент для текстовой обработки исходного кода. Команды прероцессора начинаются с символа #</p>
+				</section>
+				<section>
+					<h2>Компилятор</h2>
+					<small>🌐 compiler</small>
+					<p>Инструмент для преобразования текстового исходного кода в бинарный файл (объектный файл). Объектные файлы содержат машинный код</p>
+				</section>
+				<section>
+					<h2>Код ассемблера</h2>
+					<small>🌐 preprocessor</small>
+					<p>Текстовое удобное для чтения человеком представление машинного кода</p>
+				</section>
+				<section>
+					<h2>Компоновщик</h2>
+					<small>🌐 linker</small>
+					<p>Инструмент для соединения объектных фалов и внешних библиотек в программу (запускаемый файл)</p>
+				</section>
+				<section>
+					<p><strong>gcc</strong> - GNU project C and C++ compiler.</p>
+					<p>When you invoke GCC , it normally does preprocessing, compilation, assembly and linking.</p>
+					<p><small><a href="https://linux.die.net/man/1/g++">man</a></small></p>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### После препроцессора
+					```bash
+					g++ -E example.cpp
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### После компилятора
+					```bash
+					g++ -с example.cpp
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### После компоновщика
+					```bash
+					g++ example.o
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Все стадии одновременно
+					```bash
+					g++ example.cpp
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Генерация кода ассемблера
+					```bash
+					g++ -S example.cpp
+					```
+					</textarea>
 				</section>
 			</section>
 
 			<section>
 				<section>
-					<h2 class="r-fit-text">Отладка кода</h2>
+					<h2 class="r-fit-text">Компиляторы и редакторы</h2>
+				</section>
+				<section>
+					<img src="pics/02/godbolt.png" alt="Compiler explorer">
+					<p><small><a href="https://godbolt.org">Compiler explorer</a></small></p>
+				</section>
+				<section>
+					<img src="pics/02/vscode.png" alt="Visual Studio Code">
+					<p><small><a href="https://code.visualstudio.com">Visual Studio Code</a></small></p>
+				</section>
+				<section>
+					<img src="pics/02/vs.png" alt="Visual Studio">
+					<p><small><a href="https://visualstudio.microsoft.com/ru/vs/features/cplusplus/">Visual Studio</a></small></p>
+				</section>
+				<section>
+					<img src="pics/02/clion.png" alt="Clion">
+					<p><small><a href="https://www.jetbrains.com/ru-ru/clion/">CLion</a></small></p>
+				</section>
+				<section>
+					<img src="pics/02/vim.png" alt="Vim">
+					<p><small><a href="https://www.vim.org">Vim</a></small></p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">CMake</h2>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Простейший пример CMake
+					```cmake
+					# Простейший пример CMake (CMakeLists.txt)
+					cmake_minimum_required(VERSION 3.1...3.24)
+					project(ProjectName
+							VERSION 1.0
+							LANGUAGES CXX)
+					add_executable(example example.cpp)
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Использование CMake
+					```bash
+					cmake .
+					make
+					```
+					</textarea>
+				</section>
+				<section>
+					<img src="pics/02/cmake.png" height="600" alt="CMake">
+					<p><small><a href="https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html">CMake Generators</a></small></p>
 				</section>
 			</section>
 
