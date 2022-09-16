@@ -32,7 +32,8 @@
 5. Склонируйте репозиторий https://github.com/eficode-academy/git-katas
 6. Перейдите в каталог `git-katas/merge-conflict`
 7. Запустите скрипт `./setup.sh` (или `setup.ps1`, если вы используете Windows)
-8. Выполните задание, которое написано в README.md в секции `The task`. Воспользуйтесь https://translate.google.com, если необходимо.
+8. Перейдите в сгенерированный каталог `exercise`
+9. Выполните задание, которое написано в README.md в секции `The task`. Воспользуйтесь https://translate.google.com, если необходимо.
 
 *Комментарии*
 - Остальные упраженения из репозитория https://github.com/eficode-academy/git-katas тоже полезны и остаются на самостоятельное изучение.
