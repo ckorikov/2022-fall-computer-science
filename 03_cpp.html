@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="author" content="Constantine Korikov">
+
+	<title>Информатика</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<style>
+		.bigtext {
+			font-size: 0.6em;
+			line-height: 1.2em;
+		}
+
+		.cite {
+			text-align: right;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<img src="pics/logo.svg" alt="logo"
+					style="height: 50px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+				<h2>Информатика</h2>
+				<p>
+					<small><a href="https://www.linkedin.com/in/ckorikov/">Константин Кориков</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Тема 3</h2>
+				<p>Программирование на C++: ввод и вывод</p>
+			</section>
+
+			<section>
+				<h2>Агенда</h2>
+				<ol>
+					<li>Литералы, переменные, типы</li>
+					<li>Условия и циклы</li>
+					<li>Функции</li>
+					<li>Ввод и вывод</li>
+				</ol>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Литералы, переменные, типы</h2>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					```cpp
+					1 + 2 // литералы
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					```cpp
+					x + y // переменные
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					```cpp
+					#include <iostream>
+				
+					int main()
+					{
+						int x = 1; // переменная (может изменяться)
+
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					```cpp
+					#include <iostream>
+				
+					int main()
+					{
+						const int x = 1; // константная переменная
+
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+				<section>
+					<table class="bigtext">
+						<thead>
+							<tr>
+								<th>Тип</th>
+								<th>Обозначение</th>
+								<th>Литерал</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Целое число</td>
+								<td>int</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>Вещественное число</td>
+								<td>double</td>
+								<td>1.0</td>
+							</tr>
+							<tr>
+								<td>Логический тип</td>
+								<td>bool</td>
+								<td>true</td>
+							</tr>
+							<tr>
+								<td>Пустой тип</td>
+								<td>void</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Символ</td>
+								<td>char</td>
+								<td>'a'</td>
+							</tr>
+							<tr>
+								<td>Строка*</td>
+								<td>const char[2]</td>
+								<td>"a"</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+				<section data-background-iframe="https://en.cppreference.com/w/cpp/language/type" data-background-interactive>
+					<div style="position: absolute; width: 30%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+						<h2>Типы в C++</h2>
+						<p>Официальная документация</p>
+					</div>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					```cpp
+					#include <iostream>
+				
+					int main()
+					{
+						int x = 1;
+						int y = 2;
+						int z = x + y;
+
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+				<section data-background-iframe="https://en.cppreference.com/w/cpp/language/expressions" data-background-interactive>
+					<div style="position: absolute; width: 30%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+						<h2>Операторы в C++</h2>
+						<p>Официальная документация</p>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Условия и циклы</h2>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### if
+					```cpp
+					#include <iostream>
+				
+					int main()
+					{
+						if (/* Условие */) 
+						{
+							// Что делать, если true
+						}
+
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### if - else
+					```cpp
+					#include <iostream>
+				
+					int main()
+					{
+						if (/* Условие */) 
+						{
+							// Что делать, если true
+						}
+						else 
+						{
+							// Что делать, если false
+						}
+
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### if - else if - else
+					```cpp
+					#include <iostream>
+				
+					int main()
+					{
+						if (/* Условие A */) 
+						{
+							// Что делать, если A true
+						}
+						else if (/* Условие B */) 
+						{
+							// Что делать, если B true
+						}
+						else 
+						{
+							// Что делать, если A и B false
+						}
+
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Вложенные условия
+					```cpp
+					#include <iostream>
+					
+					int main()
+					{
+						if (/* Условие A */) 
+						{
+							if (/* Условие B */) 
+							{
+								// Что делать, если A и B true
+							}
+						}
+
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Цикл for
+					```cpp
+					#include <iostream>
+
+					using namespace std;
+					
+					int main() 
+					{
+						for (int i = 1; i <= 5; ++i) 
+						{
+							cout << i << " ";
+						}
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Цикл while
+					```cpp
+					#include <iostream>
+
+					using namespace std;
+					
+					int main() 
+					{
+						int i = 1; 
+
+						while (i <= 5) 
+						{
+							cout << i << " ";
+							++i;
+						}
+					}
+					```
+					</textarea>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Функции</h2>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Функции  без аргументов
+					```cpp
+					#include <iostream>
+
+					void greet() {
+						std::cout << "Hello World" << std::endl;
+					}
+					
+					int main()
+					{
+						greet(); 
+
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Функции с аргументами
+					```cpp
+					#include <iostream>
+
+					void print_num(int num) {
+						std::cout << num;
+					}
+					
+					int main()
+					{
+						int n = 7;
+						print_num(n); 
+
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Значение по-умолчанию
+					```cpp
+					#include <iostream>
+
+					void print_num(int num = 1) {
+						std::cout << num;
+					}
+					
+					int main()
+					{
+						print_num(); 
+
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Функции с аргументами и возвратом значений
+					```cpp
+					#include <iostream>
+
+					int add(int a, int b) 
+					{
+						return a + b;
+					}
+					
+					int main()
+					{
+						int sum = add(100, 78);
+
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Прототип функции
+					```cpp
+					#include <iostream>
+
+					void add(int, int);
+					
+					int main()
+					{
+						int sum = add(100, 78);
+
+						return 0;
+					}
+
+					int add(int a, int b) 
+					{
+						return a + b;
+					}
+					```
+					</textarea>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Ввод и вывод</h2>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					```cpp
+					#include <iostream>
+					using namespace std;
+					
+					int main() {
+						int num;
+						cout << "Enter an integer: ";
+						cin >> num;   // Считываем значение
+						cout << "The number is: " << num;
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+			</section>
+
+			<section>
+				<h5><a href="mailto:constantine.korikov@gmail.com">constantine.korikov@gmail.com</a></h5>
+			</section>
+
+		</div>
+	</div>
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/search/search.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: true,
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch, RevealZoom]
+		});
+	</script>
+</body>
+
+</html>
