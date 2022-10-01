@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="author" content="Constantine Korikov">
+
+	<title>Информатика</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<style>
+		.bigtext {
+			font-size: 0.6em;
+			line-height: 1.2em;
+		}
+
+		.cite {
+			text-align: right;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<img src="pics/logo.svg" alt="logo"
+					style="height: 50px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+				<h2>Информатика</h2>
+				<p>
+					<small><a href="https://www.linkedin.com/in/ckorikov/">Константин Кориков</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Тема 4</h2>
+				<p>Программирование на C++: алгоритмы поиска и сортировки. II</p>
+			</section>
+
+			<section>
+				<h2>Агенда</h2>
+				<ol>
+					<li>Алгоритмы и их сравнение</li>
+					<li>Сортировка выбором</li>
+					<li>Быстрая сортировка</li>
+				</ol>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Алгоритмы и их сравнение</h2>
+				</section>
+				<section>
+					<p><strong>Алгоритм</strong> — метод решения задачи, пригодный для реализации в виде компьютерной программы</p>
+					<p><small><a href="https://www.williamspublishing.com/Books/978-5-8459-1650-1.html">Р. Седжвик. Фундаментальные алгоритмы на C++</a></small></p>
+				</section>
+
+				<section>
+					<p>Алгоритмы сравнивают по <strong>времени</strong> и <strong>памяти</strong></p>
+				</section>
+
+
+				<section>
+					<table class="bigtext">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Линейный поиск</th>
+								<th>Бинарный поиск</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Лучший случай</td>
+								<td>?</td>
+								<td>?</td>
+							</tr>
+							<tr>
+								<td>Худший случай</td>
+								<td>?</td>
+								<td>?</td>
+							</tr>
+							<tr>
+								<td>В среднем</td>
+								<td>?</td>
+								<td>?</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+				<section>
+					<h2>Разделяй и властвуй</h2>
+					<p>
+						Метод решения задач, в котором исходная задача делится на меньшие подзадачи
+					</p>
+				</section>
+				<section>
+					<h2>Решение в 3 шага:</h2>
+					<ul>
+						<li>Разбиваем задачу на подзадачи</li>
+						<li>Решаем подзадачи</li>
+						<li>Объединяем решения подзадач</li>
+					</ul>
+				</section>
+				<section>
+					<h5>Основная теорема о рекуррентных соотношениях</h5>
+					<p>\[
+						T(n) = a T\left(\frac{n}{b}\right) + f(n)
+						\]
+					</p>
+					<p><small>\[
+						a \ge 1, b > 1
+						\]
+					</small>
+					</p>
+				</section>
+			</section>
+		</section>
+			<section>
+				<section>
+					<h2 class="r-fit-text">Сортировка выбором</h2>
+				</section>
+				<section>
+					<img src="pics/04/selection_sort.jpg" height="550px" alt="Сортировка выбором">
+					<p><small><a href="https://www.tutorialspoint.com/data_structures_algorithms/selection_sort_algorithm.htm">Процесс сортировки выбором</a></small></p>
+				</section>
+				<section>
+					<h2>Визуализация сортировки</h2>
+					<p><a href="https://visualgo.net/en/sorting">visualgo.net/en/sorting</a></p>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					```cpp
+					void selection_sort(int arr[], int size)
+					{
+						// Проходим каждую позицию
+						for (int i = 0; i < size - 1; i++)
+						{
+							// Ищем подходящий элемент
+							int min_index = i;
+							for (int j = i + 1; j < size; j++)
+							{
+								if (arr[j] < arr[min_index])
+								{
+									min_index = j;
+								}
+							}
+							// Проверяем нужна ли перестановка
+							if (min_index != i)
+							{
+								// вспомогательная функция
+								swap(arr, i, min_index);
+							}
+						}
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					```cpp
+					void swap(int arr[], int idx_a, int idx_b)
+					{
+						int temp = arr[idx_a]; // временная переменная
+						arr[idx_a] = arr[idx_b];
+						arr[idx_b] = temp; 
+					}
+					```
+					</textarea>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2 class="r-fit-text">Быстрая сортировка</h2>
+				</section>
+				<section>
+					<img src="pics/04/quick_sort.png" height="550px" alt="Сортировка выбором">
+					<p><small><a href="https://www.studytonight.com/python-programs/python-program-for-quicksort">Процесс быстрой сортировки</a></small></p>
+				</section>
+				<section>
+					<h2>Визуализация сортировки</h2>
+					<p><a href="https://visualgo.net/en/sorting">visualgo.net/en/sorting</a></p>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					```cpp
+					void quick_sort(int arr[], int start, int end)
+					{
+						if (start >= end)
+							return;
+					
+						// Разбиение массива
+						int p = partition(arr, start, end);
+					
+						// Сортировка левой части
+						quick_sort(arr, start, p - 1);
+						// Сортировка правой части
+						quick_sort(arr, p + 1, end);
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					```cpp
+					int partition(int arr[], int start, int end)
+					{
+					
+						int pivot = arr[start];
+					
+						int count = 0;
+						for (int i = start + 1; i <= end; i++) {
+							if (arr[i] <= pivot)
+								count++;
+						}
+					
+						int pivotIndex = start + count;
+						swap(arr, pivotIndex, start);
+					
+						int i = start, j = end;
+					
+						while (i < pivotIndex && j > pivotIndex) {
+					
+							while (arr[i] <= pivot) {
+								i++;
+							}
+					
+							while (arr[j] > pivot) {
+								j--;
+							}
+					
+							if (i < pivotIndex && j > pivotIndex) {
+								swap(arr, i, j);
+								i++;
+								j--;
+							}
+						}
+					
+						return pivotIndex;
+					}
+					```
+					</textarea>
+				</section>
+			</section>
+			<section>
+				<h5><a href="mailto:constantine.korikov@gmail.com">constantine.korikov@gmail.com</a></h5>
+			</section>
+
+		</div>
+	</div>
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/search/search.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/math/math.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: true,
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch, RevealZoom, RevealMath.MathJax2]
+		});
+	</script>
+</body>
+
+</html>
