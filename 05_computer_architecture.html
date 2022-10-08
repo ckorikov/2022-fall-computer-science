@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="author" content="Constantine Korikov">
+
+	<title>Информатика</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<style>
+		.bigtext {
+			font-size: 0.6em;
+			line-height: 1.2em;
+		}
+
+		.cite {
+			text-align: right;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<img src="pics/logo.svg" alt="logo"
+					style="height: 50px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+				<h2>Информатика</h2>
+				<p>
+					<small><a href="https://www.linkedin.com/in/ckorikov/">Константин Кориков</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Тема 5</h2>
+				<p>Архитектура компьютера</p>
+			</section>
+
+			<section>
+				<h2>Агенда</h2>
+				<ol>
+					<li>Общая картина</li>
+					<li>Аппартная система</li>
+					<li>Операционная система</li>
+				</ol>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Общая картина</h2>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					### Виды компьютеров
+
+					- Персональный компьютер
+					- Сервер
+						- Суперкомьютер
+						- Облачный сервер
+					- Встраиваемый компьютер
+					- Мобильное устройство
+					</textarea>
+				</section>
+				<section>
+					<img src="pics/05/big_picture.png" height="450px" alt="Memory">
+					<p><small><a href="https://www.tutorialspoint.com/operating_system/os_quick_guide.htm">Общая картина</a></small></p>
+				</section>
+				<section>
+					<img src="pics/05/book_1.png" height="350px" alt="Linux">
+					<img src="pics/05/book_2.png" height="350px" alt="Linux">
+					<p><small>Э. Таненбаум  и соавторы</small></p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2 class="r-fit-text">Аппартная система</h2>
+				</section>
+				<section>
+					<img src="pics/05/computer_architecture.png" height="350px" alt="Architecture">
+					<p><small><a href="https://arstechnica.com/gadgets/2009/09/intel-launches-all-new-pc-architecture-with-core-i5i7-cpus/">Типичная архитектура компьютера</a></small></p>
+				</section>
+				<section>
+					<img src="pics/05/cpu.png" height="350px" alt="CPU">
+					<p><small><a href="https://www.learncomputerscienceonline.com/central-processing-unit/">Центральный процессор</a></small></p>
+				</section>
+				<section>
+					<img src="pics/05/memory.png" height="450px" alt="Memory">
+					<p><small><a href="https://sites.google.com/site/cachememory2011/memory-hierarchy">Иерархия компьютерной памяти</a></small></p>
+				</section>
+				<section>
+					<img src="pics/05/simultor.png" height="550px" alt="Simulator">
+					<p><small><a href="https://schweigi.github.io/assembler-simulator/">Simple 8-bit Assembler Simulator</a></small></p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2 class="r-fit-text">Операционная система</h2>
+				</section>
+				<section>
+					<img src="pics/05/kernel.png" height="350px" alt="Linux">
+					<p><small>Linux</small></p>
+				</section>
+				<section>
+					<img src="pics/05/process.png" height="550px" alt="Процесс">
+					<p><small>Память процесса</small></p>
+				</section>
+				<section>
+					<img src="pics/05/filesystem.png" height="550px" alt="Процесс">
+					<p><small>Файловая система</small></p>
+				</section>
+			</section>
+			<section>
+				<h5><a href="mailto:constantine.korikov@gmail.com">constantine.korikov@gmail.com</a></h5>
+			</section>
+
+		</div>
+	</div>
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/search/search.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/math/math.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: true,
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch, RevealZoom, RevealMath.MathJax2]
+		});
+	</script>
+</body>
+
+</html>
