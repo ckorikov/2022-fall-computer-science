@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="author" content="Constantine Korikov">
+
+	<title>Информатика</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<style>
+		.bigtext {
+			font-size: 0.6em;
+			line-height: 1.2em;
+		}
+
+		.cite {
+			text-align: right;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<img src="pics/logo.svg" alt="logo"
+					style="height: 50px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+				<h2>Информатика</h2>
+				<p>
+					<small><a href="https://www.linkedin.com/in/ckorikov/">Константин Кориков</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Тема 6</h2>
+				<p>Программирование на C++: указатели и ссылки</p>
+			</section>
+
+			<section>
+				<h2>Агенда</h2>
+				<ol>
+					<li>Указатели</li>
+					<li>Ссылки</li>
+					<li>Динамическая память</li>
+				</ol>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Указатели</h2>
+				</section>
+				<section>
+					<h2>Новые понятия</h2>
+					<ol>
+						<li>Оператор взятия адреса</li>
+						<li>Указатель</li>
+						<li>Оператор разыменовывания</li>
+					</ol>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Оператор взятия адреса
+					```cpp
+					#include <iostream>
+
+					using namespace std;
+					
+					int main()
+					{
+						int x = 1;
+						cout << &x;
+						return 0;
+					}
+						
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					```cpp
+					&x // оператор взятия адреса
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Указатель
+					```cpp
+					#include <iostream>
+
+					using namespace std;
+					
+					int main()
+					{
+						int x = 1;
+						int* p = &x;
+						
+						cout << p;
+					
+						return 0;
+					}
+						
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Оператор разыменовывания
+					```cpp
+					#include <iostream>
+
+					using namespace std;
+					
+					int main()
+					{
+						int x = 1;
+						int* p = &x;
+						cout << *p;
+						return 0;
+					}
+						
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					```cpp
+					*x // оператор разыменовывания (не путать с указателем)
+					```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+					#### Константны и указатели
+
+					```cpp
+					int* // указатель на int
+					const int * // указатель на константу типа int
+					int * const // константный указатель на int
+					const int * const // константный указатель на константу типа int
+					```
+
+					<sup><sup>читаем справа налево</sup></sup>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+					#### Указатель на указатель
+
+					```cpp
+					int* p; // указатель на int
+					int** d = &p; // указатель на указатель на int
+					```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+					#### Массивы и указатели
+
+					```cpp
+					int arr[10]; // массив int
+					int* p = arr; // arr по сути указатель на 0-ой элемент
+					```
+
+					другая запись
+
+					```cpp
+					int* p = &arr[0];
+					```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+					#### Указатели и строки
+
+					```cpp
+					const char* str = "hello"; // строка — массив символов
+					```
+
+					<sup><sup><sup>обычно хранятся в области данных только для чтения (.rodata)</sup></sup></sup>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+					#### Арифметика указателей
+
+					```cpp
+					int* p; // здесь будет некоторый адрес a
+					p = p + 1 // здесь будет адрес a + sizeof(int)
+					```
+
+					<sup><sup>в операциях с указателями учитывается размер типа</sup></sup>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+					#### Указатель без типа
+
+					```cpp
+					void* p; // нельзя разыменовывать
+					```
+
+					<sup><sup>может указывать на любой тип</sup></sup>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+					#### Null-указатель
+
+					```cpp
+					int* p = nullptr; // указатель в никуда (не путать с void*)
+					```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+					#### Указатель на функцию
+
+					```cpp
+					#include <iostream>
+
+					using namespace std;
+					
+					int add(int a, int b)
+					{
+						return a+b;
+					}
+					
+					int main()
+					{
+						int (*func)(int, int) = &add; // указатель на функцию add
+						cout << (*func)(1,2); // вызов функции по указателю
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Ссылки</h2>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Ссылка
+					```cpp
+					#include <iostream>
+
+					using namespace std;
+					
+					int main()
+					{
+						int x = 1;
+						int& r = x;
+						cout << r;
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+				<section>
+					<h2>Ссылки vs указатели</h2>
+					<ol>
+						<li>Ссылки не могут быть void</li>
+						<li>Ссылка не может указывать в никуда (обязательная инициализация)</li>
+						<li>Нет арифметики</li>
+						<li>Ссылку нельзя изменить</li>
+						<li>Со ссылками проще работать</li>
+					</ol>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Динамическая память</h2>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Новая переменная
+					```cpp
+					#include <iostream>
+
+					using namespace std;
+					
+					int main()
+					{
+						int* p = new int;
+						*p = 2;
+						cout<<*p;
+						delete p;
+						return 0;
+					}
+						
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Новый массив
+					```cpp
+					#include <iostream>
+
+					using namespace std;
+					
+					int main()
+					{
+						int* p = new int[5];
+						p[0] = 2;
+						cout<<p[0];
+						delete[] p;
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+			</section>
+
+			<section>
+				<h5><a href="mailto:constantine.korikov@gmail.com">constantine.korikov@gmail.com</a></h5>
+			</section>
+
+		</div>
+	</div>
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/search/search.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/math/math.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: true,
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch, RevealZoom, RevealMath.MathJax2]
+		});
+	</script>
+</body>
+
+</html>
