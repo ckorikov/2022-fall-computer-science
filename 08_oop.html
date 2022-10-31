@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="author" content="Constantine Korikov">
+
+	<title>Информатика</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<style>
+		.bigtext {
+			font-size: 0.6em;
+			line-height: 1.2em;
+		}
+
+		.cite {
+			text-align: right;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<img src="pics/logo.svg" alt="logo"
+					style="height: 50px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+				<h2>Информатика</h2>
+				<p>
+					<small><a href="https://www.linkedin.com/in/ckorikov/">Константин Кориков</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Тема 8</h2>
+				<p>Программирование на C++: основы ООП</p>
+			</section>
+
+			<section>
+				<h2>Агенда</h2>
+				<ol>
+					<li>Объектно-оринтированное программирование</li>
+					<li>Структуры и классы в C++</li>
+					<li>Объекты в стандартной библиотеке</li>
+				</ol>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Объектно-оринтированное<br>программирование</h2>
+				</section>
+				<section>
+					<h2>Новые понятия</h2>
+					<ol>
+						<li>Объект</li>
+						<li>Класс</li>
+						<li>Абстракция</li>
+						<li>Инкапсуляция</li>
+						<li>Наследование</li>
+						<li>Полиморфизм</li>
+					</ol>
+				</section>
+				<section>
+					<h2>Объект и класс</h2>
+					<img src="pics/08/object_and_class.png">
+				</section>
+				<section>
+					<h2>Абстракция в ООП</h2>
+					<p>Представление сущностей только теми характеристиками, которые существенны в данной задаче, и сокрытие деталей</p>
+				</section>
+
+				<section>
+					<h2>Инкапсуляция в ООП</h2>
+					<p>Объединение данных и функций над этими данными в рамках одной структуры с сокрытием её внутреннего устройства</p>
+				</section>
+
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Структуры и классы в C++</h2>
+				</section>
+				<section data-markdown>
+					<text
+					area data-template>
+					#### Структура
+					```cpp
+					struct String
+					{
+						unsigned int length;
+						const char* data;
+					};
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<text
+					area data-template>
+					#### Структура
+					```cpp
+					String str;
+					str.length = 1;
+					str.data = "x";
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<text
+					area data-template>
+					#### Методы
+					```cpp
+					struct String
+					{
+						String(const char* init)
+						{
+							length = strlen(init);
+							data = new char[length+1];
+							strcpy(data, init);
+						}
+						
+						unsigned int get_length()
+						{
+							return length;
+						}
+						
+						const char* c_str()
+						{
+							return data;
+						}
+						
+						~String()
+						{
+							delete[] data;
+						}
+						
+						private:
+							unsigned int length;
+							char* data;
+					};
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<text
+					area data-template>
+					#### Метод
+					```cpp
+					String str("test");
+					cout << str.c_str();
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<text
+					area data-template>
+					#### Метод
+					```cpp
+					String str = "test"; // вызывается конструктор с 1 аргументом
+					cout << str.c_str();
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<text
+					area data-template>
+					#### Метод
+					```cpp
+					// запрещает инициализацию из предыдущего примера
+
+					explicit String(const char* init)
+					{
+						length = strlen(init);
+						data = new char[length+1];
+						strcpy(data, init);
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<text
+					area data-template>
+					#### Методы
+					```cpp
+					struct String
+					{
+						String();
+						String(const char* init);
+						unsigned int get_length();
+						const char* c_str();
+						~String();
+						
+						private:
+							unsigned int length;
+							char* data;
+					};
+
+
+					String::String()
+					{
+						length = 0;
+						data = new char[1];
+						data[0] = '\0';
+					}
+
+					String::String(const char* init)
+					{
+						cout << "ctor" << endl;
+						length = strlen(init);
+						data = new char[length+1];
+						strcpy(data, init);
+					}
+
+					unsigned int String::get_length()
+					{
+						return length;
+					}
+
+					const char* String::c_str()
+					{
+						return data;
+					}
+
+					String::~String()
+					{
+						delete[] data;
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<text
+					area data-template>
+					#### Класс
+					```cpp		
+					class String
+					{
+						unsigned int length;
+						char* data;
+						
+						public:
+							String();
+							String(const char* init);
+							unsigned int get_length();
+							const char* c_str();
+							~String();
+					};
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<text
+					area data-template>
+					#### Операторы
+					```cpp		
+					char operator[](unsigned int pos)
+					{
+						return data[pos];
+					}
+					```
+					</textarea>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Объекты в стандартной библиотеке</h2>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Строка
+					```cpp
+					std::string str1 = "hello";
+					```
+					</textarea>
+				</section>
+				<section data-background-iframe="https://en.cppreference.com/w/cpp/string/basic_string" data-background-interactive>
+					<div style="position: absolute; width: 30%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+						<h2>String</h2>
+						<p>в стандартной библиотеке C++</p>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<h5><a href="mailto:constantine.korikov@gmail.com">constantine.korikov@gmail.com</a></h5>
+			</section>
+
+		</div>
+	</div>
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/search/search.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/math/math.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: true,
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch, RevealZoom, RevealMath.MathJax2]
+		});
+	</script>
+</body>
+
+</html>
