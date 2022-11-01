@@ -8,7 +8,7 @@
 4. Напишите класс `String`, используя код из лекции (разместит код в новых файлах `String.h` и `String.cpp`)
 5. Напишите нереализованные методы
 6. Добавьте оператор сложения строк (конкатенация)
-7. Добавьте оператор вывода `<<` строки в `cout`
+7. Добавьте оператор вывода `operator<<` строки в `std::cout`
 8. Приведите пример использования класса и его методов
 9. Отправьте решение на GitHub
 
@@ -25,7 +25,7 @@ project(complex LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 
 include(doctest.cmake)
-add_executable(tests complex.cpp test_complex.cpp)
+add_executable(tests custom_complex.cpp test_complex.cpp)
 target_link_libraries(tests PRIVATE doctest)
 ```
 
@@ -33,7 +33,7 @@ target_link_libraries(tests PRIVATE doctest)
 ```cpp
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <doctest.h>
-#include "complex.h"
+#include "custom_complex.h"
 
 TEST_CASE("sum of complex numbers")
 {
@@ -60,7 +60,7 @@ TEST_CASE("abs of complex numbers")
 }
 
 ```
-5. Реализуйте класс комлексных чисел с поддержкой сложения, вычитания, модуля и сравнения на равенство
+5. Реализуйте класс комлексных чисел с поддержкой сложения, вычитания, модуля и сравнения на равенство `operator==`
 6. Отправьте решение на GitHub
 
 
@@ -71,7 +71,7 @@ TEST_CASE("abs of complex numbers")
 - Реализуйте класс `Student`, который содержит имя и оценку студента
 - Добавьте класс `StudenList`, который содержит список студентов (используйте массив)
 - Добавьте в класс `StudenList` методы, позволяющие добавить студента, удалить студента, поставить оценку студенту, получить среднюю оценку студентов, спиоск лучших студентов (высокая оценка), список худших студентов (низка оценка)
-- Добавьте возможность выводить список студентов в стандартный поток (`cout`)
+- Добавьте возможность выводить список студентов в стандартный поток `std::cout`
 4. Напишите тесты для с использованием doctest 
 5. Отправьте решение на GitHub
 
@@ -79,3 +79,5 @@ TEST_CASE("abs of complex numbers")
 - В этом файле есть опечатки, вы можете их исправить через pull request.
 - Всю работу удобно вести в отдельной ветке и затем влить готовый результат в основную ветку.
 - Чтобы скачать файл с GitHub, используя web-интерфейс, его удобно представить в raw-виде (кнопка в интерфейсе GitHub)
+- Сравнение чисел с плавающей точкой в doctest: [Floating point comparisons](https://github.com/doctest/doctest/blob/master/doc/markdown/assertions.md#floating-point-comparisons)
+- Операторы в С++: [operator overloading](https://en.cppreference.com/w/cpp/language/operators)
