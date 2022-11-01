@@ -55,7 +55,7 @@ TEST_CASE("abs of complex numbers")
 {
   CHECK_EQ(Complex(1, 0).abs(), 1);
   CHECK_EQ(Complex(-1, 0).abs(), 1);
-  CHECK_EQ(Complex(1, 1).abs(), 1.41421356);
+  CHECK_EQ(Complex(1, 1).abs(), doctest::Approx(1.41421).epsilon(0.01));
   CHECK_EQ(Complex(0, -2).abs(), 2);
 }
 
