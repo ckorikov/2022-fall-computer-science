@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="author" content="Constantine Korikov">
+
+	<title>Информатика</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<style>
+		.bigtext {
+			font-size: 0.6em;
+			line-height: 1.2em;
+		}
+
+		.cite {
+			text-align: right;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<img src="pics/logo.svg" alt="logo"
+					style="height: 50px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+				<h2>Информатика</h2>
+				<p>
+					<small><a href="https://www.linkedin.com/in/ckorikov/">Константин Кориков</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Тема 9</h2>
+				<p>Программирование на C++: наследование и полиморфизм</p>
+			</section>
+
+			<section>
+				<h2>Агенда</h2>
+				<ol>
+					<li>Наследование</li>
+					<li>Полиморфизм</li>
+					<li>Контейнеры и итераторы</li>
+				</ol>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Наследование</h2>
+				</section>
+				<section>
+					<h2>Наследование в ООП</h2>
+					<p>Возможность переиспользования данных и функций одного класса в другом</p>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Два класса
+					```cpp
+					struct Student
+					{
+						std::string name{};
+						int score{};
+					};
+					
+					struct Teacher
+					{
+						std::string name{};
+					};
+
+					```
+					</textarea>
+				</section>
+			
+				<section data-markdown>
+					<textarea data-template>
+					#### Классы с наследованием
+					```cpp
+					struct Person
+					{
+						std::string name{};
+					};
+
+					struct Student: Person
+					{
+						int score{};
+					};
+					
+					struct Teacher: Person
+					{
+					};
+					```
+					<sub><sup>Классы сильно связываются при наследовании </sup></sub>
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+					#### Переопределение методов
+					```cpp
+					struct Person
+					{
+						std::string name{};
+						
+						void pay()
+						{
+							std::cout << "paid" << std::endl;
+						}
+					};
+
+					struct Student: Person
+					{
+						int score{};
+						
+						void pay()
+						{
+							std::cout << "paid scolarship" << std::endl;
+						}
+					};
+					```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+					#### Модификаторы доступа
+					```cpp
+					struct Person
+					{
+						std::string name{};
+					};
+
+					struct Student: public Person
+					{
+						int score{};
+					};
+					
+					struct Teacher: public Person
+					{
+					};
+					```
+					</textarea>
+				</section>
+				<section>
+					<h2>Модификаторы доступа</h2>
+					<img src="pics/09/inheritance.png">
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Множественное наследование
+					```cpp
+					struct Person
+					{
+						std::string name{};
+					};
+
+					struct Student: Person
+					{
+						int score{};
+					};
+					
+					struct Teacher: Person
+					{
+					};
+
+					struct TA: Teacher, Student
+					{
+					};
+
+
+					int main()
+					{
+						TA ta;
+
+						ta.score = 5.0;
+
+						// Проблема (the diamond problem)! 
+						// error: request for member ‘name’ is ambiguous
+						ta.name = "Da Sha";
+
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Виртуальное наследование решает the diamond problem
+					```cpp
+					struct Person
+					{
+						std::string name{};
+					};
+
+					struct Student: virtual public Person
+					{
+						int score{};
+					};
+
+					struct Teacher: virtual public Person
+					{
+					};
+
+					struct TA: Teacher, Student
+					{
+					};
+
+
+					int main()
+					{
+						TA ta;
+						ta.score = 5.0;
+						ta.name = "Da Sha";
+
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### запретить наследование от класса
+					```cpp
+					struct Person final
+					{
+						std::string name{};
+					};
+					```
+					</textarea>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Полиморфизм</h2>
+				</section>
+				<section>
+					<h2>Полиморфизм в ООП</h2>
+					<p>Возможность одинаково взаимодейстовать с объектами разных классов</p>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+					#### Полиморфизм
+					```cpp
+					struct Person
+					{
+						std::string name{};
+						
+						virtual void pay()
+						{
+							std::cout << "paid" << std::endl;
+						}
+
+						virtual ~Person() {}
+					};
+
+					struct Student: Person
+					{
+						int score{};
+						
+						void pay() override
+						{
+							std::cout << "paid scolarship" << std::endl;
+						}
+					};
+
+					struct Teacher: Person
+					{
+						void pay() override
+						{
+							std::cout << "paid salary" << std::endl;
+						}
+					};
+
+					struct TA: Teacher, Student
+					{
+					};
+
+
+					int main()
+					{
+						// Пример 1
+						Student student;
+						Teacher teacher;
+						student.pay();
+						teacher.pay();
+						
+						// Пример 2
+						Person* ptr_student = &student;
+						Person* ptr_teacher = &teacher;
+						ptr_student->pay();
+						ptr_teacher->pay();
+
+						return 0;
+					}
+
+					```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+					#### Абстракный класс
+					```cpp
+					// Абстрактный класс
+					struct Person
+					{
+						// Чисто виртуальная функция
+						virtual void pay() = 0;
+						virtual ~Person() {}
+					};
+
+					struct Student: Person
+					{
+						void pay() final // или override 
+						{}
+					};
+
+					int main()
+					{
+						
+						Person p; // Создать нельзя 
+						
+
+						Student student;
+						Person* p = &student; // Можно использовать
+
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+					#### Абстрактный класс как интерфейс
+					```cpp
+					// Интерфейс часто называют, начиная с буквы I (от interface)
+					struct IFile
+					{
+						virtual void open(std::string path) = 0;
+						virtual Data read(int n) = 0;
+						virtual void write(Data data) = 0;
+						virtual void close() = 0;
+
+						virtual ~IFile() {}
+					};
+					```
+					</textarea>
+				</section>
+
+				<section data-background-iframe="https://en.cppreference.com/w/cpp/language/static_cast" data-background-interactive>
+					<div style="position: absolute; width: 30%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+						<h2>static_cast</h2>
+						<p>статическое преобразование типов</p>
+					</div>
+				</section>
+
+				<section data-background-iframe="https://en.cppreference.com/w/cpp/language/dynamic_cast" data-background-interactive>
+					<div style="position: absolute; width: 30%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+						<h2>dynamic_cast</h2>
+						<p>динамическое преобразование указателей и ссылок</p>
+					</div>
+				</section>
+
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Контейнеры и итераторы</h2>
+				</section>
+				<section>
+					<h2>Контейнеры</h2>
+					<p>
+						Библиотека контейнеров — часть стандартной библиотеки C++, которая содержит классы различных структур данных (контейнеров)
+					</p>
+				</section>
+				<section>
+					<h2>Итераторы</h2>
+					<p>
+						Интератор — обобщение указателя, которое позволяет единообразно работать со структурами данных (контейнерами)
+					</p>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Динамический массив (std::vector)
+					```cpp
+					#include<iostream>
+					#include<vector>
+					
+					int main()
+					{
+						std::vector<int> container = {1, 2, 3, 4, 5};
+							
+						for (auto it = container.begin(); it < container.end(); ++it)
+						{
+							std::cout << *it << std::endl;
+						}
+							
+						return 0;    
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Основанное на диапазоне выражение for 
+					```cpp
+					#include<iostream>
+					#include<vector>
+					
+					int main()
+					{
+						std::vector<int> container = {1, 2, 3, 4, 5};
+							
+						for (auto x: container)
+						{
+							std::cout << x << std::endl;
+						}
+							
+						return 0;    
+					}
+					```
+					</textarea>
+				</section>
+				<section data-background-iframe="https://en.cppreference.com/w/cpp/container/vector" data-background-interactive>
+					<div style="position: absolute; width: 30%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+						<h2>Vector</h2>
+						<p>в стандартной библиотеке C++</p>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<h5><a href="mailto:constantine.korikov@gmail.com">constantine.korikov@gmail.com</a></h5>
+			</section>
+
+		</div>
+	</div>
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/search/search.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/math/math.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: true,
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch, RevealZoom, RevealMath.MathJax2]
+		});
+	</script>
+</body>
+
+</html>
