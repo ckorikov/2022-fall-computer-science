@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="author" content="Constantine Korikov">
+
+	<title>Информатика</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<style>
+		.bigtext {
+			font-size: 0.6em;
+			line-height: 1.2em;
+		}
+
+		.cite {
+			text-align: right;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<img src="pics/logo.svg" alt="logo"
+					style="height: 50px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+				<h2>Информатика</h2>
+				<p>
+					<small><a href="https://www.linkedin.com/in/ckorikov/">Константин Кориков</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Тема 10</h2>
+				<p>Связный список</p>
+			</section>
+
+			<section>
+				<h2>Агенда</h2>
+				<ol>
+					<li>Проблемы массивов</li>
+					<li>Односвязный список</li>
+					<li>Конструкторы</li>
+					<li>Умные указатели</li>
+				</ol>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Проблемы массивов</h2>
+				</section>
+				<section data-background-color="rgb(255, 255, 255)" data-background-iframe="https://www.bigocheatsheet.com" data-background-interactive>
+					<div style="position: absolute; width: 30%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+						<p>Вставка и удаление</p>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Односвязный список</h2>
+				</section>
+				<section>
+					<h2>Односвязный список</h2>
+					<img src="pics/10/linked_list.png">
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Односвязный список
+					```cpp
+					struct Node 
+					{
+						int data;
+						Node* next;
+					};					
+
+
+					int main()
+					{
+						auto* a = new Node{1, nullptr};
+						auto* b = new Node{2, nullptr};
+						a->next = b;
+						
+						delete b;
+						delete a;
+
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Обход списка
+					```cpp
+					void print(Node* p)
+					{
+						while (p != nullptr) 
+						{
+							std::cout << p->data << std::endl; // действие при обходе
+							p = p->next;
+						}
+					}
+					```
+					</textarea>
+				</section>
+				<section data-background-iframe="https://visualgo.net/en/list" data-background-interactive>
+					<div style="position: absolute; width: 30%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+						<h2>Демонстрация</h2>
+						<p>Связный список</p>
+					</div>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Вставка в начало
+					```cpp
+					void push(Node** head, int data)
+					{
+						Node* new_node = new Node{data, nullptr};
+						new_node->next = *head;
+						*head = new_node;
+					}	
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Обёртка
+					```cpp
+					struct List 
+					{
+						
+					void push(int data);
+					void print();
+
+					private:
+					Node* head = nullptr;
+
+					};
+					```
+					</textarea>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2 class="r-fit-text">Конструкторы</h2>
+				</section>
+				<section data-background-iframe="https://en.cppreference.com/w/cpp/language/copy_constructor" data-background-interactive>
+					<div style="position: absolute; width: 30%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+						<h2>Конструктор</h2>
+						<p>копирования</p>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Умные указатели</h2>
+				</section>
+				<section data-background-iframe="https://en.cppreference.com/w/cpp/memory" data-background-interactive>
+					<div style="position: absolute; width: 30%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+						<h2>Умные указатели</h2>
+						<p>В стандартной библиотеке</p>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<h5><a href="mailto:constantine.korikov@gmail.com">constantine.korikov@gmail.com</a></h5>
+			</section>
+
+		</div>
+	</div>
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/search/search.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/math/math.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: true,
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch, RevealZoom, RevealMath.MathJax2]
+		});
+	</script>
+</body>
+
+</html>
