@@ -78,6 +78,7 @@ TEST_CASE("abs of complex numbers")
 *Комментарии*
 - В этом файле есть опечатки, вы можете их исправить через pull request.
 - Всю работу удобно вести в отдельной ветке и затем влить готовый результат в основную ветку.
-- Чтобы скачать файл с GitHub, используя web-интерфейс, его удобно представить в raw-виде (кнопка в интерфейсе GitHub)
-- Сравнение чисел с плавающей точкой в doctest: [Floating point comparisons](https://github.com/doctest/doctest/blob/master/doc/markdown/assertions.md#floating-point-comparisons)
-- Операторы в С++: [operator overloading](https://en.cppreference.com/w/cpp/language/operators)
+- Чтобы скачать файл с GitHub, используя web-интерфейс, его удобно представить в raw-виде (кнопка в интерфейсе GitHub).
+- Сравнение чисел с плавающей точкой в doctest: [Floating point comparisons](https://github.com/doctest/doctest/blob/master/doc/markdown/assertions.md#floating-point-comparisons).
+- Операторы в С++: [operator overloading](https://en.cppreference.com/w/cpp/language/operators).
+- Создавая оператор `operator+`, удобно создать и оператор `operator+=`, тогда реализация первого состоит из создания временного объекта `tmp` и вызова у него `+=`.
