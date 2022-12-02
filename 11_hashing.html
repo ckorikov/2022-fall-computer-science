@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="author" content="Constantine Korikov">
+
+	<title>Информатика</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<style>
+		.bigtext {
+			font-size: 0.6em;
+			line-height: 1.2em;
+		}
+
+		.cite {
+			text-align: right;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<img src="pics/logo.svg" alt="logo"
+					style="height: 50px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+				<h2>Информатика</h2>
+				<p>
+					<small><a href="https://www.linkedin.com/in/ckorikov/">Константин Кориков</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Тема 11</h2>
+				<p>хеширование</p>
+			</section>
+
+			<section>
+				<h2>Агенда</h2>
+				<ol>
+					<li>Как сделать словарь?</li>
+					<li>Хеш-таблица</li>
+					<li>Разрешение коллизий</li>
+					<li>Ассоциативные контейнеры</li>
+				</ol>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Как сделать словарь?</h2>
+				</section>
+				<section>
+					<h2>Словарь</h2>
+					<img src="pics/11/dictionary.jpg">
+				</section>
+				<section data-background-color="rgb(255, 255, 255)" data-background-iframe="https://www.bigocheatsheet.com" data-background-interactive>
+					<div style="position: absolute; width: 30%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+						<p>Поиск</p>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Хеш-таблица</h2>
+				</section>
+				<section>
+					<h2>Хеширование</h2>
+					<p>Преобразование данных в некоторое число (хеш-код)</p>
+				</section>
+				<section data-markdown>
+					## Хеш-функции
+					`$$ h = f(k)$$`
+				</section>
+				<section data-markdown>
+					## Хеш-функции
+					Всегда можно найти способ интерпретации ключей как целых неотрицательных чисел
+				</section>
+				<section>
+					<h2>Хеш-таблица</h2>
+					<img src="pics/11/hash_table.png">
+				</section>
+				<section data-markdown>
+					## Метод делений
+					`$$ f(k) = k \bmod m$$`
+					здесь `$m$` — размер таблицы
+				</section>
+			</section>
+
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Разрешение коллизий</h2>
+				</section>
+				<section>
+					<h2>Коллизии в хеш-таблицах</h2>
+					<p>Совпадения хеш-кодов разрных ключей</p>
+				</section>
+				<section>
+					<h2>Цепочки</h2>
+					<img src="pics/11/chaining.png">
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Ассоциативные контейнеры</h2>
+				</section>
+				<section data-background-iframe="https://en.cppreference.com/w/cpp/container" data-background-interactive>
+					<div style="position: absolute; width: 30%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+						<h3>Ассоциативные контейнеры</h3>
+						<p>с хешированием</p>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<h5><a href="mailto:constantine.korikov@gmail.com">constantine.korikov@gmail.com</a></h5>
+			</section>
+
+		</div>
+	</div>
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/search/search.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/math/math.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: true,
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch, RevealZoom, RevealMath.MathJax2]
+		});
+	</script>
+</body>
+
+</html>
