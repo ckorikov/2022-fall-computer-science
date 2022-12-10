@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="author" content="Constantine Korikov">
+
+	<title>Информатика</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<style>
+		.bigtext {
+			font-size: 0.6em;
+			line-height: 1.2em;
+		}
+
+		.cite {
+			text-align: right;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<img src="pics/logo.svg" alt="logo"
+					style="height: 50px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+				<h2>Информатика</h2>
+				<p>
+					<small><a href="https://www.linkedin.com/in/ckorikov/">Константин Кориков</a></small>
+				</p>
+			</section>
+
+			<section>
+				<h2>Тема 12</h2>
+				<p>Деревья</p>
+			</section>
+
+			<section>
+				<h2>Агенда</h2>
+				<ol>
+					<li>Как устроено дерево</li>
+					<li>Обход дерева</li>
+					<li>Двоичное дерево поиска</li>
+					<li>Ассоциативные контейнеры</li>
+				</ol>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Как устроено дерево</h2>
+				</section>
+				<section>
+					<h2>Дерево</h2>
+					<img src="pics/12/tree.jpg">
+				</section>
+				<section>
+					<h2>Термины</h2>
+					<img src="pics/12/tree_terms.jpg">
+					<p>Бинарное (двоичное) дерево</p>
+				</section>
+				<section>
+					<img src="pics/12/terms.png">
+				</section>
+				<section>
+					<h2>Пример дерева</h2>
+					<img src="pics/12/tree_example.png">
+					<p>Дерево каталогов файловой системы</p>
+				</section>
+				<section data-markdown>
+					## Свойства бинарных деревьев
+					
+					Максимальное число узлов на уровне `$l$` бинарного дерева равно `$2^l$`
+				</section>
+				<section data-markdown>
+					## Свойства бинарных деревьев
+					
+					Максимальное число узлов в бинарном дереве высоты `$h$` равно `$2^{h+1}-1$`
+				</section>
+				<section data-markdown>
+					## Свойства бинарных деревьев
+					
+					Высота бинараного дерева из `$N$` узлов лежит в диапазоне `$\log_2(N+1)-1 \leq h \leq N-1$`
+				</section>
+				<section data-markdown>
+					## Свойства бинарных деревьев
+					
+					Непустое бинараное дерево из `$N$` узлов имеет `$N-1$` рёбер
+				</section>
+				<section data-markdown>
+					## Свойства бинарных деревьев
+					
+					В бинарном дереве листьев на 1 больше, чем узлов второй степени
+				</section>
+				<section data-background-color="rgb(255, 255, 255)" data-background-iframe="https://www.bigocheatsheet.com" data-background-interactive>
+					<div style="position: absolute; width: 30%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+						<p>Операции</p>
+					</div>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Бинарное дерево
+					```cpp
+					struct Node 
+					{
+						int data;
+						Node* left;
+						Node* right;
+					};					
+
+					int main()
+					{
+						auto* a = new Node{1, nullptr, nullptr};
+						auto* b = new Node{2, nullptr, nullptr};
+						auto* c = new Node{3, nullptr, nullptr};
+						a->left = b;
+						a->right = c;
+						
+						delete c;
+						delete b;
+						delete a;
+
+						return 0;
+					}
+					```
+					</textarea>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Обход дерева</h2>
+				</section>
+				<section>
+					<h2>Прямой обход в глубину</h2>
+					<img src="pics/12/pre_order.png" style="background-color: #fff;">
+					<p>Узел → Левый → Правый</p>
+					<p>F, B, A, D, C, E, G, I, H</p>
+				</section>
+				<section>
+					<h2>Симметричный обход в глубину</h2>
+					<img src="pics/12/in_order.png" style="background-color: #fff;">
+					<p>Левый → Узел → Правый</p>
+					<p>A, B, C, D, E, F, G, H, I</p>
+				</section>
+				<section>
+					<h2>Обратный обход в глубину</h2>
+					<img src="pics/12/post_order.png" style="background-color: #fff;">
+					<p>Левый → Правый → Узел</p>
+					<p>A, C, E, D, B, H, I, G, F</p>
+				</section>
+				<section>
+					<h2>Обход в ширину</h2>
+					<img src="pics/12/bfs.png" style="background-color: #fff;">
+					<p>Breadth-first search, BFS</p>
+					<p>F, B, G, A, D, I, C, E, H</p>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### BFS
+					```cpp
+					void bfs(Node* root)
+					{
+						std::queue<Node*> queue;
+						queue.push(root);
+						while(!queue.empty())
+						{
+							Node* node = queue.front();
+							queue.pop();
+							std::cout << node->data << std::endl; // действие
+							if(node->left) queue.push(node->left);
+							if(node->right) queue.push(node->right);
+						}
+					}
+					```
+					</textarea>
+				</section>
+			</section>
+
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Двоичное дерево поиска</h2>
+				</section>
+				<section data-markdown>
+					## Свойство бинарного дерева поиска
+					
+					Пусть `$x$` представляет собой значение узла бинарного дерева поиска. Если `$y$` является
+					значением узла в левом поддереве `$x$`, то `$y \le x$`. Если `$y$` является
+					значением узла в правом поддереве `$x$`, то `$y \ge x$`
+				</section>
+				<section>
+					<h2>Свойство бинарного дерева поиска</h2>
+					<p>Обход по узлам в отсортированном виде — симметричный обход в глубину</p>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Поиск
+					```cpp
+					Node* search(Node* root, int x)
+					{
+						if(!root || root->data == x)
+						{
+							return root;
+						}
+						if(x<root->data)
+						{
+							return search(root->left, x);
+						}
+						return search(root->right, x);
+					}
+					```
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### Вставка
+					```cpp
+					Node* insert(Node* root, Node* x)
+					{
+						if(!root)
+						{
+							return x;
+						}
+						
+						if(x->data<root->data)
+						{
+							root->left = insert(root->left, x);
+						}
+						else
+						{
+							root->right = insert(root->right, x);
+						}
+						return root;
+					}
+					```
+					</textarea>
+				</section>
+				<section data-background-iframe="https://visualgo.net/en/bst" data-background-interactive>
+					<div style="position: absolute; width: 30%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+						<h3>Бинарное</h3>
+						<p>дерево поиска</p>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2 class="r-fit-text">Ассоциативные контейнеры</h2>
+				</section>
+				<section data-background-iframe="https://en.cppreference.com/w/cpp/container" data-background-interactive>
+					<div style="position: absolute; width: 30%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+						<h3>Ассоциативные контейнеры</h3>
+						<p>на деревьях</p>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<h5><a href="mailto:constantine.korikov@gmail.com">constantine.korikov@gmail.com</a></h5>
+			</section>
+
+		</div>
+	</div>
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/search/search.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/math/math.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: true,
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch, RevealZoom, RevealMath.MathJax2]
+		});
+	</script>
+</body>
+
+</html>
